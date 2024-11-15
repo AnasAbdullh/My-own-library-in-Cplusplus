@@ -1,5 +1,9 @@
 #pragma once
 #include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <string>
+
 using namespace std;
 enum enPrimeOrNotPrime
 {
@@ -105,7 +109,6 @@ namespace Mylib
             Number = Number / 10;
 
             cout << Remainder << endl;
-
         }
     }
 
@@ -118,7 +121,6 @@ namespace Mylib
             Remainder = Number % 10;
             Number /= 10;
             Sum += Remainder;
-
         }
         return Sum;
     }
@@ -180,18 +182,6 @@ namespace Mylib
         }
     }
 
-    int ReverenceNumber(int Number)
-    {
-        int Remainder = 0, count = 0;
-        while (Number > 0)
-        {
-            Remainder = Number % 10;
-            Number /= 10;
-            count = count * 10 + Remainder;
-        }
-        return count;
-    }
-
     bool IsPalindrome(int Number)
     {
         return Number == ReverenceNumber(Number);
@@ -200,18 +190,6 @@ namespace Mylib
     void InvertedNumber(int Number)
     {
         for (size_t i = Number; i >= 1; i--)
-        {
-            for (size_t count = 1; count <= i; count++)
-            {
-                cout << i;
-            }
-            cout << "\n";
-        }
-    }
-
-    void InvertedNumber(int Number)
-    {
-        for (size_t i = 1; i <= Number; i++)
         {
             for (size_t count = 1; count <= i; count++)
             {
@@ -235,7 +213,7 @@ namespace Mylib
 
     void RecencyInvertedNumber(int Number)
     {
-        int array[2] = { Number + 65 - 1, 65 };
+        int array[2] = {Number + 65 - 1, 65};
         for (size_t i = 65; i <= Number + 65 - 1; i++)
         {
             for (size_t count = 1; count <= i - 65 + 1; count++)
@@ -376,7 +354,7 @@ namespace Mylib
         }
     }
 
-    void ReadArray(int NumberArray[100], int& Arraylength)
+    void ReadArray(int NumberArray[100], int &Arraylength)
     {
         cout << "ENTER Number of the elements" << endl;
         cin >> Arraylength;
@@ -410,20 +388,13 @@ namespace Mylib
         return count;
     }
 
-    void ReadyFillArraywhitNumber(int Array[100], int& Length)
+    void ReadyFillArrayWhitNumber(int Array[100], int &Length)
     {
         cout << "Enter The Elements Array " << endl;
         cin >> Length;
         for (size_t i = 0; i < Length; i++)
         {
             Array[i] = RandomNumber(1, 100);
-        }
-    }
-    void PrintArray(int Array[100], int Length)
-    {
-        for (size_t i = 0; i < Length; i++)
-        {
-            cout << Array[i] << " ";
         }
     }
 
@@ -484,11 +455,11 @@ namespace Mylib
         return (float)SumOfRandomArray(array, length) / length;
     }
 
-    void CopyArray(int arrSource[100], int arrDestrins[100], int Length)
+    void CopyArray(int arrSource[100], int arrDentins[100], int Length)
     {
         for (size_t i = 0; i < Length; i++)
         {
-            arrDestrins[i] = arrSource[i];
+            arrDentins[i] = arrSource[i];
         }
     }
 
@@ -508,7 +479,7 @@ namespace Mylib
         return enPrimeOrNotPrime::Prime;
     }
 
-    void CheckPrime(int Array[], int length, int Prime[], int& PrimeLength)
+    void CheckPrime(int Array[], int length, int Prime[], int &PrimeLength)
     {
         PrimeLength = 0; // Initialize the length of the prime array to zero
         for (int i = 0; i < length; i++)
@@ -536,7 +507,7 @@ namespace Mylib
         }
     }
 
-    void Swap(int& A, int& B)
+    void Swap(int &A, int &B)
     {
         int Temp = 0;
         Temp = A;
@@ -591,32 +562,40 @@ namespace Mylib
     {
         int Number = 0;
 
-        cout << "\nPlase Enter a number " << endl;
+        cout << "\nPlease Enter a number " << endl;
         cin >> Number;
 
+        while (cin.fail())
+        {
+
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Invalid Number, Enter a valid one:" << endl;
+            cin >> Number;
+        }
         return Number;
     }
 
-    void AddTomoreElements(int arr[100], int& length, int Number)
+    void AddToMoreElements(int arr[100], int &length, int Number)
     {
         length++;
         arr[length - 1] = Number;
     }
-    void inputToUser(int arr[100], int& length)
+    void inputToUser(int arr[100], int &length)
     {
 
         bool Check = true;
 
         do
         {
-            AddTomoreElements(arr, length, ReadNumber());
+            AddToMoreElements(arr, length, ReadNumber());
             cout << "do to wants array " << endl;
             cin >> Check;
 
         } while (Check == 1);
     }
 
-    void AddArrayElement(int arr[], int& length, int number)
+    void AddArrayElement(int arr[], int &length, int number)
     {
         if (length < 100)
         { // Check array bounds
@@ -629,20 +608,7 @@ namespace Mylib
         }
     }
 
-    void FillArrayWithRandomNumbers(int arr[], int& length)
-    {
-        cout << "Enter the number of elements in the array: ";
-        cin >> length;
-
-        if (length > 100)
-        { // Check array bounds
-            cout << "Maximum array size is 100. Please enter a smaller value." << endl;
-            length = 100; // Set length to maximum allowed
-        }
-
-    }
-
-    void FillArrayWithRandomNumbers(int arr[], int& length)
+    void FillArrayWithRandomNumbers(int arr[], int &length)
     {
         cout << "Enter the number of elements in the array: ";
         cin >> length;
@@ -659,14 +625,14 @@ namespace Mylib
         }
     }
 
-    void AddArrayElements(int arr[100], int& length, int Number)
+    void AddArrayElements(int arr[100], int &length, int Number)
     {
         length++;
         arr[length - 1] = Number;
     }
 
     // Function to copy one array to another
-    void OddNumberInArray(int arr[100], int length, int& OddArrayLength, int OddArray[100])
+    void OddNumberInArray(int arr[100], int length, int &OddArrayLength, int OddArray[100])
     {
 
         for (int i = 0; i < length; i++)
